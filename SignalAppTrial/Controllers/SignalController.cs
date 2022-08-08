@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using SignalAppTrial.Repository;
+using SignalAppTrial.DataAccess.Abstract;
 
 namespace SignalAppTrial.Controllers
 {
@@ -8,17 +8,17 @@ namespace SignalAppTrial.Controllers
     [ApiController]
     public class SignalController : ControllerBase
     {
-        private DataRepository dataRepository;
+        private readonly ISignalRepository _signalRepository;
 
-        public SignalController()
+        public SignalController(ISignalRepository signalRepository)
         {
-            this.dataRepository = new DataRepository();
+            _signalRepository = signalRepository;
         }
 
         [HttpGet]
         public IActionResult GetAll()
         {
-           var result= dataRepository.GetAll();
+           var result= _signalRepository.GetAll();
             return Ok(result);
         }
     }

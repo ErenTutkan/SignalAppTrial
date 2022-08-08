@@ -1,8 +1,10 @@
-﻿using SignalAppTrial.Models;
+﻿
+using SignalAppTrial.DataAccess.Abstract;
+using SignalAppTrial.Models;
 
 namespace SignalAppTrial.Repository
 {
-    public class DataRepository
+    public class SignalRepository:ISignalRepository
     {
         List<Signal> signals=new List<Signal>()
         {
@@ -27,9 +29,10 @@ namespace SignalAppTrial.Repository
             new Signal(){Id=19,Data="$ETH Ethereum value may decrease from $1634.93, according to the PARYTE Scalp algorithm."},
             new Signal(){Id=20,Data="$ETH Ethereum value may decrease from $1634.93, according to the PARYTE Scalp algorithm."},
         };
-        public  List<Signal> GetAll()
+
+        public Task<List<Signal>> GetAll()
         {
-            return signals.ToList();
-        } 
+            throw new NotImplementedException();
+        }
     }
 }
